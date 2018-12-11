@@ -49,9 +49,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jl_table = new javax.swing.JList<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_crud = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ta_llaves = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -110,7 +113,7 @@ public class Principal extends javax.swing.JFrame {
         jl_table.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(jl_table);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
+        cb_crud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
 
         jButton1.setText("Actualizar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,6 +129,18 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        ta_llaves.setEditable(false);
+        ta_llaves.setColumns(20);
+        ta_llaves.setRows(5);
+        jScrollPane4.setViewportView(ta_llaves);
+
+        jButton4.setText("Cargar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -136,27 +151,36 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_crud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jButton3)
                             .addGap(2, 2, 2))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(553, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(46, 46, 46))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel14)
-                .addGap(11, 11, 11)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cb_crud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -787,12 +811,12 @@ public class Principal extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery("SELECT name FROM sysobjects where type='U'");
                 while (rs.next()) {
                     String nombre = rs.getString(1);
-                    System.out.println("{"+nombre+"}");
+                    System.out.println("{" + nombre + "}");
                     if (!nombre.equals("Bitacora")) {
                         System.out.println("Entro");
                         int entrar = 0;
                         for (int i = 0; i < nombres.size(); i++) {
-                            System.out.println(nombres.get(i)+ " = " + nombre);
+                            System.out.println(nombres.get(i) + " = " + nombre);
                             if (nombres.get(i).equals(nombre)) {
                                 entrar = 1;
                             }
@@ -818,7 +842,7 @@ public class Principal extends javax.swing.JFrame {
             st.execute("DELETE FROM BITACORA");
             for (int i = 0; i < m.size(); i++) {
                 st.execute("INSERT INTO BITACORA VALUES('" + m.getElementAt(i) + "')");
-               
+
             }
             JOptionPane.showMessageDialog(jd_inicio, "¡Guardado Exitoso!");
         } catch (Exception e) {
@@ -829,6 +853,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
             DefaultListModel m = (DefaultListModel) jl_table.getModel();
+            m.removeAllElements();
             Statement st = conectSQLServer().createStatement();
             ResultSet rs = st.executeQuery("SELECT name FROM sysobjects where type='U'");
             while (rs.next()) {
@@ -842,8 +867,105 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        
+        try {
+            ArrayList<String> atributos = new ArrayList();
+            Statement st = conectSQLServer().createStatement();
+            DefaultListModel m = (DefaultListModel) jl_table.getModel();
+            if (jl_table.getSelectedIndex() >= 0) {
+                //meter los atributos a un arraylist
+                String tabla = m.getElementAt(jl_table.getSelectedIndex()) + "";
+                ResultSet rs = st.executeQuery("SELECT c.name FROM sys.columns c JOIN sys.tables t ON c.object_id = t.object_id WHERE t.name = " + "'" + tabla + "'");
+                while (rs.next()) {
+                    atributos.add(rs.getString(1));
+                }
+
+                DefaultComboBoxModel combo = (DefaultComboBoxModel) cb_crud.getModel();
+                String tipo = combo.getSelectedItem() + "";
+
+                //verificar los cruds
+                if (tipo.equals("Agregar")) {
+                    for (int i = 0; i < atributos.size(); i++) {
+                        String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese el " + atributos.get(i));
+                    }
+
+                } else if (tipo.equals("Modificar")) {
+                    String acum = "";
+                    for (int i = 0; i < atributos.size(); i++) {
+                        acum += (i + 1) + "). " + atributos.get(i) + "\n";
+                    }
+                    String algo = JOptionPane.showInputDialog(jd_inicio, "Que desea modificar? \n " + acum);
+                    String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria");
+
+                } else if (tipo.equals("Eliminar")) {
+                    String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria");
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(jd_inicio, "No ha seleccionado una tabla");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        try {
+            //agregar llaves al text area
+            ta_llaves.setText("");
+            DefaultListModel m = (DefaultListModel) jl_table.getModel();
+            if (jl_table.getSelectedIndex() >= 0) {
+                String tabla = m.getElementAt(jl_table.getSelectedIndex()) + "";
+                Statement st = conectSQLServer().createStatement();
+                ArrayList<String> llaves = new ArrayList();
+                ResultSet rs2 = st.executeQuery("SELECT [name]\n"
+                        + "FROM syscolumns \n"
+                        + "WHERE [id] IN (\n"
+                        + "    SELECT [id] FROM sysobjects \n"
+                        + "    WHERE [name] = '" + tabla + "' )\n"
+                        + "    AND colid IN (\n"
+                        + "    SELECT SIK.colid \n"
+                        + "    FROM sysindexkeys SIK JOIN sysobjects SO ON SIK.[id] = SO.[id]\n"
+                        + "    WHERE SIK.indid = 1 AND SO.[name] = '" + tabla + "' )");
+                while (rs2.next()) {
+                    llaves.add(rs2.getString(1));
+                }
+                for (int i = 0; i < llaves.size(); i++) {
+                    ResultSet rs3 = st.executeQuery("SELECT " + llaves.get(i) + " from " + tabla);
+                    String acum = "";
+                    while (rs3.next()) {
+                        acum += " " + rs3.getString(1) + " \n";
+                    }
+                    ta_llaves.append(llaves.get(i) + "\n" + acum);
+                }
+
+                //para llaves foraneas
+                ArrayList<String> foraneas = new ArrayList();
+                ResultSet rs3 = st.executeQuery("SELECT SYSCOLUMNS.name as field\n"
+                        + "FROM SYSCOLUMNS \n"
+                        + "INNER JOIN SYSOBJECTS ON SYSOBJECTS.ID = SYSCOLUMNS.ID \n"
+                        + "WHERE SYSOBJECTS.name = '"+tabla+"' \n"
+                        + "and SYSCOLUMNS.xtype = '56';");
+                while (rs3.next()) {
+                    foraneas.add(rs3.getString(1));
+                }
+                for (int i = 0; i < foraneas.size(); i++) {
+                    ResultSet rs4 = st.executeQuery("SELECT " + foraneas.get(i) + " from " + tabla);
+                    String acum = "";
+                    while (rs4.next()) {
+                        acum += " " + rs4.getString(1) + " \n";
+                    }
+                    ta_llaves.append(foraneas.get(i) + "\n" + acum);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(jd_inicio, "No ha seleccionado una tabla");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -907,10 +1029,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_crud;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -940,6 +1063,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jb_actualizar;
     private javax.swing.JButton jb_cancelar;
     private javax.swing.JButton jb_derecha;
@@ -953,6 +1077,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_table;
     private javax.swing.JPasswordField pf_clave_d;
     private javax.swing.JPasswordField pf_clave_o;
+    private javax.swing.JTextArea ta_llaves;
     private javax.swing.JTextField tf_bd_o;
     private javax.swing.JTextField tf_db_d;
     private javax.swing.JTextField tf_instancia_d;
