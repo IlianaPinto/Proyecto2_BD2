@@ -939,6 +939,7 @@ public class Principal extends javax.swing.JFrame {
                     ta_llaves.append(llaves.get(i) + "\n" + acum);
                 }
 
+                
                 //para llaves foraneas
                 ArrayList<String> foraneas = new ArrayList();
                 ResultSet rs3 = st.executeQuery("SELECT SYSCOLUMNS.name as field\n"
