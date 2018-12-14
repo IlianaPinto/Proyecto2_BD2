@@ -50,13 +50,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jl_table = new javax.swing.JList<>();
         cb_crud = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jb_actualizar = new javax.swing.JButton();
+        jb_seleccionar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         ta_llaves = new javax.swing.JTextArea();
-        jButton4 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        jb_cargar = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,7 +65,6 @@ public class Principal extends javax.swing.JFrame {
         jb_derecha = new javax.swing.JButton();
         jb_guardar = new javax.swing.JButton();
         jb_cancelar = new javax.swing.JButton();
-        jb_actualizar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -108,24 +105,25 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel14.setText("jLabel14");
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel14.setText("Acciones");
 
         jl_table.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(jl_table);
 
         cb_crud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
 
-        jButton1.setText("Actualizar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_actualizar.setText("Actualizar");
+        jb_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jb_actualizarMouseClicked(evt);
             }
         });
 
-        jButton3.setText("Seleccionar");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_seleccionar.setText("Seleccionar");
+        jb_seleccionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                jb_seleccionarMouseClicked(evt);
             }
         });
 
@@ -134,10 +132,10 @@ public class Principal extends javax.swing.JFrame {
         ta_llaves.setRows(5);
         jScrollPane4.setViewportView(ta_llaves);
 
-        jButton4.setText("Cargar");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_cargar.setText("Cargar");
+        jb_cargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                jb_cargarMouseClicked(evt);
             }
         });
 
@@ -152,15 +150,16 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addComponent(cb_crud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton3)
-                            .addGap(2, 2, 2))
+                            .addGap(99, 99, 99))
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                            .addComponent(jb_actualizar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jb_seleccionar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jb_cargar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(46, 46, 46))
         );
         jPanel8Layout.setVerticalGroup(
@@ -170,18 +169,18 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel14)
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_crud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))
-                        .addGap(29, 29, 29)
+                        .addGap(25, 25, 25)
+                        .addComponent(cb_crud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jb_actualizar)
+                        .addComponent(jb_cargar))
+                    .addComponent(jb_seleccionar))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -195,33 +194,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        tp_inicio.addTab("Agregar", jPanel5);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
-        );
-
-        tp_inicio.addTab("Modificar", jPanel6);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 814, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
-        );
-
-        tp_inicio.addTab("Eliminar", jPanel7);
+        tp_inicio.addTab("Acciones", jPanel5);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -259,13 +232,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jb_actualizar.setText("Actualizar");
-        jb_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_actualizarMouseClicked(evt);
-            }
-        });
-
         jLabel15.setText("No Replicados");
 
         jLabel16.setText("Replicados");
@@ -275,9 +241,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(173, 173, 173)
-                .addComponent(jb_actualizar)
-                .addGap(18, 18, 18)
+                .addGap(231, 231, 231)
                 .addComponent(jb_guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jb_cancelar)
@@ -321,8 +285,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_guardar)
-                    .addComponent(jb_cancelar)
-                    .addComponent(jb_actualizar))
+                    .addComponent(jb_cancelar))
                 .addGap(35, 35, 35))
             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
@@ -385,7 +348,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre Base Datos:");
 
-        tf_bd_o.setText("Northwind");
+        tf_bd_o.setText("computer");
 
         jLabel3.setText("Puerto:");
 
@@ -467,7 +430,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel8.setText("Nombre Base Datos:");
 
-        tf_db_d.setText("prueba");
+        tf_db_d.setText("computer");
 
         jLabel9.setText("Puerto:");
 
@@ -705,41 +668,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_probar_destinoMouseClicked
 
-    private void jb_actualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_actualizarMouseClicked
-        try {
-
-            ArrayList<String> nombres = new ArrayList();
-            Statement st2 = conectSQLServer().createStatement();
-            ResultSet rs2 = st2.executeQuery("SELECT NOMBRE FROM BITACORA");
-            while (rs2.next()) {
-                nombres.add(rs2.getString(1));
-            }
-
-            DefaultListModel m = (DefaultListModel) jl_tablas.getModel();
-            DefaultListModel m2 = (DefaultListModel) jl_tablas2.getModel();
-            Statement st = conectSQLServer().createStatement();
-            ResultSet rs = st.executeQuery("SELECT name FROM sysobjects where type='U'");
-            while (rs.next()) {
-                if (!rs.getString(1).equalsIgnoreCase("Bitacora")) {
-                    int entrar = 0;
-                    for (int i = 0; i < nombres.size(); i++) {
-                        if (nombres.get(i).equalsIgnoreCase(rs.getString(1))) {
-                            entrar = 1;
-                        }
-                    }
-                    if (entrar == 0) {
-                        m.addElement(rs.getString(1));
-                    } else {
-                        m2.addElement(rs.getString(1));
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jb_actualizarMouseClicked
-
     private void jb_derechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_derechaMouseClicked
         try {
             DefaultListModel m = (DefaultListModel) jl_tablas.getModel();
@@ -797,31 +725,26 @@ public class Principal extends javax.swing.JFrame {
     private void tp_inicioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tp_inicioStateChanged
         try {
             int num = tp_inicio.getSelectedIndex();
-            if (num == 3) {
+            if (num == 1) {
                 ArrayList<String> nombres = new ArrayList();
                 Statement st2 = conectSQLServer().createStatement();
                 ResultSet rs2 = st2.executeQuery("SELECT NOMBRE FROM BITACORA");
                 while (rs2.next()) {
                     nombres.add(rs2.getString(1));
                 }
-
                 DefaultListModel m = (DefaultListModel) jl_tablas.getModel();
                 DefaultListModel m2 = (DefaultListModel) jl_tablas2.getModel();
                 Statement st = conectSQLServer().createStatement();
                 ResultSet rs = st.executeQuery("SELECT name FROM sysobjects where type='U'");
                 while (rs.next()) {
                     String nombre = rs.getString(1);
-                    System.out.println("{" + nombre + "}");
-                    if (!nombre.equals("Bitacora")) {
-                        System.out.println("Entro");
+                    if (!nombre.equals("Bitacora") && !nombre.equals("Bitacora2") && !nombre.equals("Historial")) {
                         int entrar = 0;
                         for (int i = 0; i < nombres.size(); i++) {
-                            System.out.println(nombres.get(i) + " = " + nombre);
                             if (nombres.get(i).equals(nombre)) {
                                 entrar = 1;
                             }
                         }
-                        System.out.println(entrar);
                         if (entrar == 0) {
                             m.addElement(nombre);
                         } else {
@@ -850,23 +773,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_guardarMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jb_actualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_actualizarMouseClicked
         try {
             DefaultListModel m = (DefaultListModel) jl_table.getModel();
             m.removeAllElements();
             Statement st = conectSQLServer().createStatement();
             ResultSet rs = st.executeQuery("SELECT name FROM sysobjects where type='U'");
             while (rs.next()) {
-                if (!rs.getString(1).equalsIgnoreCase("Bitacora")) {
+                if (!rs.getString(1).equalsIgnoreCase("Bitacora") && !rs.getString(1).equalsIgnoreCase("Bitacora2") && !rs.getString(1).equalsIgnoreCase("Historial")) {
                     m.addElement(rs.getString(1));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jb_actualizarMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void jb_seleccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_seleccionarMouseClicked
         try {
             ArrayList<String> atributos = new ArrayList();
             Statement st = conectSQLServer().createStatement();
@@ -884,32 +807,79 @@ public class Principal extends javax.swing.JFrame {
 
                 //verificar los cruds
                 if (tipo.equals("Agregar")) {
+                    String acum = "INSERT INTO " + tabla + " VALUES('";
                     for (int i = 0; i < atributos.size(); i++) {
-                        String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese el " + atributos.get(i));
+                        String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese " + atributos.get(i) + ":");
+                        if (i == atributos.size() - 1) {
+                            acum += atributo + "')";
+                        } else {
+                            acum += atributo + "','";
+                        }
                     }
-
+                    st.execute("INSERT INTO BITACORA2 VALUES('" + tabla + "','Agregar', '" + acum + "')");
                 } else if (tipo.equals("Modificar")) {
                     String acum = "";
                     for (int i = 0; i < atributos.size(); i++) {
                         acum += (i + 1) + "). " + atributos.get(i) + "\n";
                     }
-                    String algo = JOptionPane.showInputDialog(jd_inicio, "Que desea modificar? \n " + acum);
-                    String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria");
-
+                    String llave = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria que desea modificar: ");
+                    int algo = Integer.parseInt(JOptionPane.showInputDialog(jd_inicio, "Que desea modificar? \n " + acum));
+                    String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese el valor:");
+                    ArrayList<String> llaves = new ArrayList();
+                    ResultSet rs2 = st.executeQuery("SELECT [name]\n"
+                            + "FROM syscolumns \n"
+                            + "WHERE [id] IN (\n"
+                            + "    SELECT [id] FROM sysobjects \n"
+                            + "    WHERE [name] = '" + tabla + "' )\n"
+                            + "    AND colid IN (\n"
+                            + "    SELECT SIK.colid \n"
+                            + "    FROM sysindexkeys SIK JOIN sysobjects SO ON SIK.[id] = SO.[id]\n"
+                            + "    WHERE SIK.indid = 1 AND SO.[name] = '" + tabla + "' )");
+                    while (rs2.next()) {
+                        llaves.add(rs2.getString(1));
+                    }
+                    String acum2 = "UPDATE " + tabla + " SET " + atributos.get(algo) + " = '" + atributo + "' WHERE " + llaves.get(0) + " = " + llave;
+                    st.execute("INSERT INTO BITACORA2 VALUES('" + tabla + "','Modificar', '" + acum2 + "'");
                 } else if (tipo.equals("Eliminar")) {
+
                     String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria");
+                    ArrayList<String> foraneas = new ArrayList();
+                    ResultSet rs3 = st.executeQuery("SELECT SYSCOLUMNS.name as field\n"
+                            + "FROM SYSCOLUMNS \n"
+                            + "INNER JOIN SYSOBJECTS ON SYSOBJECTS.ID = SYSCOLUMNS.ID \n"
+                            + "WHERE SYSOBJECTS.name = '" + tabla + "' \n"
+                            + "and SYSCOLUMNS.xtype = '56';");
+                    while (rs3.next()) {
+                        foraneas.add(rs3.getString(1));
+                    }
+
+                    for (int i = 0; i < foraneas.size(); i++) {
+                        ResultSet rs4 = st.executeQuery("SELECT " + foraneas.get(i) + " from " + tabla);
+                        String acum = "";
+                        while (rs4.next()) {
+                            acum += " " + rs4.getString(1) + " \n";
+                        }
+                        //ta_llaves.append(foraneas.get(i) + "\n" + acum);
+                    }
+                    if (foraneas.size() > 0) {
+                        String acum = "DELETE FROM " + tabla + " WHERE " + foraneas.get(0) + " = " + atributo + "";
+                        //st.execute("INSERT INTO BITACORA2 VALUES('" + tabla + "','Eliminar', '" + acum + "'");
+                        Statement stB = conectSQLServer().createStatement();
+                        stB.execute("DELETE FROM " + tabla + " WHERE " + foraneas.get(0) + " = " + atributo + "");
+                        JOptionPane.showMessageDialog(jd_inicio, "eliminado exitosamente");
+                    }
 
                 }
             } else {
-                JOptionPane.showMessageDialog(jd_inicio, "No ha seleccionado una tabla");
+                JOptionPane.showMessageDialog(jd_inicio, "¡No ha seleccionado una tabla!");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_jb_seleccionarMouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void jb_cargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_cargarMouseClicked
         try {
             //agregar llaves al text area
             ta_llaves.setText("");
@@ -929,6 +899,7 @@ public class Principal extends javax.swing.JFrame {
                         + "    WHERE SIK.indid = 1 AND SO.[name] = '" + tabla + "' )");
                 while (rs2.next()) {
                     llaves.add(rs2.getString(1));
+                    //System.out.println(rs2.getString(1)+" prim");
                 }
                 for (int i = 0; i < llaves.size(); i++) {
                     ResultSet rs3 = st.executeQuery("SELECT " + llaves.get(i) + " from " + tabla);
@@ -939,13 +910,12 @@ public class Principal extends javax.swing.JFrame {
                     ta_llaves.append(llaves.get(i) + "\n" + acum);
                 }
 
-                
                 //para llaves foraneas
-                ArrayList<String> foraneas = new ArrayList();
+                /*ArrayList<String> foraneas = new ArrayList();
                 ResultSet rs3 = st.executeQuery("SELECT SYSCOLUMNS.name as field\n"
                         + "FROM SYSCOLUMNS \n"
                         + "INNER JOIN SYSOBJECTS ON SYSOBJECTS.ID = SYSCOLUMNS.ID \n"
-                        + "WHERE SYSOBJECTS.name = '"+tabla+"' \n"
+                        + "WHERE SYSOBJECTS.name = '" + tabla + "' \n"
                         + "and SYSCOLUMNS.xtype = '56';");
                 while (rs3.next()) {
                     foraneas.add(rs3.getString(1));
@@ -956,9 +926,9 @@ public class Principal extends javax.swing.JFrame {
                     while (rs4.next()) {
                         acum += " " + rs4.getString(1) + " \n";
                     }
+                    System.out.println(foraneas.get(i));
                     ta_llaves.append(foraneas.get(i) + "\n" + acum);
-                }
-
+                }*/
             } else {
                 JOptionPane.showMessageDialog(jd_inicio, "No ha seleccionado una tabla");
             }
@@ -966,7 +936,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_jb_cargarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1031,10 +1001,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_crud;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1057,8 +1024,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1067,11 +1032,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jb_actualizar;
     private javax.swing.JButton jb_cancelar;
+    private javax.swing.JButton jb_cargar;
     private javax.swing.JButton jb_derecha;
     private javax.swing.JButton jb_guardar;
     private javax.swing.JButton jb_iniciar;
     private javax.swing.JButton jb_probar_destino;
     private javax.swing.JButton jb_probar_origen;
+    private javax.swing.JButton jb_seleccionar;
     private javax.swing.JDialog jd_inicio;
     private javax.swing.JList<String> jl_tablas;
     private javax.swing.JList<String> jl_tablas2;
@@ -1089,4 +1056,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_usuario_o;
     private javax.swing.JTabbedPane tp_inicio;
     // End of variables declaration//GEN-END:variables
+ArrayList<String> llaveprimaria = new ArrayList();
 }
