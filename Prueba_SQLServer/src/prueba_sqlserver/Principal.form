@@ -250,7 +250,9 @@
                                   <Component id="jb_guardar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jb_cancelar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="jb_replicar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="397" max="-2" attributes="0"/>
@@ -300,6 +302,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jb_guardar" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jb_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jb_replicar" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
@@ -400,6 +403,14 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Replicados"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jb_replicar">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Replicar"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_replicarMouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

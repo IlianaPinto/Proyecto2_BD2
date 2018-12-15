@@ -30,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -67,6 +68,7 @@ public class Principal extends javax.swing.JFrame {
         jb_cancelar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jb_replicar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -236,6 +238,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel16.setText("Replicados");
 
+        jb_replicar.setText("Replicar");
+        jb_replicar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_replicarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -245,7 +254,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jb_guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jb_cancelar)
-                .addGap(206, 206, 206))
+                .addGap(100, 100, 100)
+                .addComponent(jb_replicar)
+                .addGap(33, 33, 33))
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(397, 397, 397)
                 .addComponent(jButton2)
@@ -285,7 +296,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_guardar)
-                    .addComponent(jb_cancelar))
+                    .addComponent(jb_cancelar)
+                    .addComponent(jb_replicar))
                 .addGap(35, 35, 35))
             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
@@ -734,6 +746,8 @@ public class Principal extends javax.swing.JFrame {
                 }
                 DefaultListModel m = (DefaultListModel) jl_tablas.getModel();
                 DefaultListModel m2 = (DefaultListModel) jl_tablas2.getModel();
+                m.removeAllElements();
+                m2.removeAllElements();
                 Statement st = conectSQLServer().createStatement();
                 ResultSet rs = st.executeQuery("SELECT name FROM sysobjects where type='U'");
                 while (rs.next()) {
@@ -792,6 +806,7 @@ public class Principal extends javax.swing.JFrame {
     private void jb_seleccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_seleccionarMouseClicked
         try {
             ArrayList<String> atributos = new ArrayList();
+            ArrayList<String> tipos = new ArrayList();
             Statement st = conectSQLServer().createStatement();
             DefaultListModel m = (DefaultListModel) jl_table.getModel();
             if (jl_table.getSelectedIndex() >= 0) {
@@ -801,22 +816,31 @@ public class Principal extends javax.swing.JFrame {
                 while (rs.next()) {
                     atributos.add(rs.getString(1));
                 }
-
+                ResultSet rs10 = st.executeQuery("Select  data_type from information_schema.columns WHERE TABLE_NAME='" + tabla + "'");
+                while (rs10.next()) {
+                    tipos.add(rs10.getString(1));
+                }
                 DefaultComboBoxModel combo = (DefaultComboBoxModel) cb_crud.getModel();
                 String tipo = combo.getSelectedItem() + "";
 
                 //verificar los cruds
                 if (tipo.equals("Agregar")) {
-                    String acum = "INSERT INTO " + tabla + " VALUES('";
+                    String acum = "INSERT INTO " + tabla + " VALUES(";
                     for (int i = 0; i < atributos.size(); i++) {
                         String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese " + atributos.get(i) + ":");
-                        if (i == atributos.size() - 1) {
-                            acum += atributo + "')";
+                        if (tipos.get(i).equalsIgnoreCase("varchar")) {
+                            acum += "'" + atributo + "'";
                         } else {
-                            acum += atributo + "','";
+                            acum += "" + atributo + "";
+                        }
+                        if (i == atributos.size() - 1) {
+                            acum += ")";
+                        } else {
+                            acum += ",";
                         }
                     }
-                    st.execute("INSERT INTO BITACORA2 VALUES('" + tabla + "','Agregar', '" + acum + "')");
+                    st.execute(acum);
+                    JOptionPane.showMessageDialog(jd_inicio, "¡Agregado Exitoso!");
                 } else if (tipo.equals("Modificar")) {
                     String acum = "";
                     for (int i = 0; i < atributos.size(); i++) {
@@ -838,8 +862,8 @@ public class Principal extends javax.swing.JFrame {
                     while (rs2.next()) {
                         llaves.add(rs2.getString(1));
                     }
-                    String acum2 = "UPDATE " + tabla + " SET " + atributos.get(algo) + " = '" + atributo + "' WHERE " + llaves.get(0) + " = " + llave;
-                    st.execute("INSERT INTO BITACORA2 VALUES('" + tabla + "','Modificar', '" + acum2 + "'");
+                    st.execute("UPDATE " + tabla + " SET " + atributos.get(algo - 1) + " = '" + atributo + "' WHERE " + llaves.get(0) + " = " + llave);
+                    JOptionPane.showMessageDialog(jd_inicio, "¡Modificado Exitoso!");
                 } else if (tipo.equals("Eliminar")) {
 
                     String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria");
@@ -938,6 +962,80 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_cargarMouseClicked
 
+    private void jb_replicarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_replicarMouseClicked
+        try {
+            Statement st = conectSQLServer().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM BITACORA");
+            ArrayList<String> tablas = new ArrayList();
+            while (rs.next()) {
+                tablas.add(rs.getString(1));
+            }
+            ResultSet rs2 = st.executeQuery("SELECT * FROM BITACORA2");
+            ArrayList<Bitacora> bitacoras = new ArrayList();
+            while (rs2.next()) {
+                bitacoras.add(new Bitacora(rs2.getString(1), rs2.getString(2), rs2.getString(3)));
+            }
+            for (int i = 0; i < bitacoras.size(); i++) {
+                boolean entrar = true;
+                for (int j = 0; j < tablas.size(); j++) {
+                    if (bitacoras.get(i).getNombre().equalsIgnoreCase(tablas.get(j))) {
+                        entrar = false;
+                    }
+                }
+                if (!entrar) {
+                    String temp = bitacoras.get(i).getDescripcion();
+                    String accion = "";
+                    int primero = 0, segundo = 0;
+                    boolean entrar2 = true;
+                    for (int j = 0; j < temp.length(); j++) {
+                        if (temp.charAt(j) == '*') {
+                            accion += "'";
+                        } else {
+                            accion += temp.charAt(j);
+                        }
+                        if (temp.charAt(j) == '(') {
+                            primero = j;
+                        } else {
+                            if (temp.charAt(j) == ',' && entrar2) {
+                                segundo = j;
+                                entrar2 = false;
+                            }
+                        }
+                    }
+                    ResultSet rs3 = st.executeQuery("SELECT [name]\n"
+                            + "FROM syscolumns \n"
+                            + "WHERE [id] IN (\n"
+                            + "    SELECT [id] FROM sysobjects \n"
+                            + "    WHERE [name] = '" + bitacoras.get(i).getNombre() + "' )\n"
+                            + "    AND colid IN (\n"
+                            + "    SELECT SIK.colid \n"
+                            + "    FROM sysindexkeys SIK JOIN sysobjects SO ON SIK.[id] = SO.[id]\n"
+                            + "    WHERE SIK.indid = 1 AND SO.[name] = '" + bitacoras.get(i).getNombre() + "' )");
+
+                    String campo = "";
+                    while (rs3.next()) {
+                        campo = rs3.getString(1);
+                    }
+                    Statement st2 = conectMySQL().createStatement();
+                    if (bitacoras.get(i).getAccion().equals("Modifico")) {
+                        String llave = accion.substring(primero + 1, segundo);
+                        System.out.println("eliminar, " + campo + ", " + llave);
+                        st2.execute("DELETE FROM " + bitacoras.get(i).getNombre() + " WHERE " + campo + " = " + llave);
+                    }
+                    System.out.println("accion: " + accion);
+                    st2.execute(accion);
+                }
+            }
+            for (int i = 0; i < bitacoras.size(); i++) {
+                st.execute("INSERT INTO HISTORIAL VALUES('" + bitacoras.get(i).getNombre() + "','" + bitacoras.get(i).getAccion() + "','" + bitacoras.get(i).getDescripcion() + "')");
+            }
+            st.execute("DELETE FROM BITACORA2");
+            JOptionPane.showMessageDialog(jd_inicio, "Replica Exitosa");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jb_replicarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -974,7 +1072,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public Connection conectMySQL() {
-        String url = "jdbc:mysql://localhost:3306/Aeropuerto";
+        String url = "jdbc:mysql://localhost:3306/computer";
         String user = "root";
         String pass = "Iliana98maria";
         System.out.println("Conectando...");
@@ -1038,6 +1136,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_iniciar;
     private javax.swing.JButton jb_probar_destino;
     private javax.swing.JButton jb_probar_origen;
+    private javax.swing.JButton jb_replicar;
     private javax.swing.JButton jb_seleccionar;
     private javax.swing.JDialog jd_inicio;
     private javax.swing.JList<String> jl_tablas;
