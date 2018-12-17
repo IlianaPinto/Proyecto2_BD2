@@ -13,11 +13,13 @@ public class Bitacora {
      public String nombre;
      public String accion;
      public String descripcion;
+     public String fecha;
 
-    public Bitacora(String nombre, String accion, String descripcion) {
+    public Bitacora(String nombre, String accion, String descripcion, String fecha) {
         this.nombre = nombre;
         this.accion = accion;
         this.descripcion = descripcion;
+        this.fecha = fecha;
     }
 
     public String getNombre() {
@@ -43,6 +45,13 @@ public class Bitacora {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
      
-    
 }

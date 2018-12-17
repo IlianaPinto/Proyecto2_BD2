@@ -16,16 +16,14 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author iliana
+ * @author Iliana, Erick y Juan
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     boolean comprobar, comprobar2;
 
     public Principal() {
@@ -53,14 +51,14 @@ public class Principal extends javax.swing.JFrame {
         cb_crud = new javax.swing.JComboBox<>();
         jb_actualizar = new javax.swing.JButton();
         jb_seleccionar = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        ta_llaves = new javax.swing.JTextArea();
         jb_cargar = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jt_mostrar = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_tablas2 = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
+        jb_izquierda = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jl_tablas = new javax.swing.JList<>();
         jb_derecha = new javax.swing.JButton();
@@ -69,6 +67,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jb_replicar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -113,7 +112,7 @@ public class Principal extends javax.swing.JFrame {
         jl_table.setModel(new DefaultListModel());
         jScrollPane3.setViewportView(jl_table);
 
-        cb_crud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Eliminar", "Modificar" }));
+        cb_crud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar", "Modificar", "Eliminar" }));
 
         jb_actualizar.setText("Actualizar");
         jb_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,11 +128,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        ta_llaves.setEditable(false);
-        ta_llaves.setColumns(20);
-        ta_llaves.setRows(5);
-        jScrollPane4.setViewportView(ta_llaves);
-
         jb_cargar.setText("Cargar");
         jb_cargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,48 +135,67 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jt_mostrar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "LLave Primaria"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jt_mostrar);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(cb_crud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(99, 99, 99))
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                            .addComponent(jb_actualizar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jb_seleccionar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jb_cargar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(46, 46, 46))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(cb_crud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(99, 99, 99))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jb_actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jb_seleccionar)))
+                .addGap(62, 62, 62)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_cargar))
+                .addGap(0, 54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addGap(225, 225, 225))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel14)
                 .addGap(27, 27, 27)
+                .addComponent(cb_crud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(25, 25, 25)
-                        .addComponent(cb_crud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jb_actualizar)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jb_actualizar)
-                        .addComponent(jb_cargar))
-                    .addComponent(jb_seleccionar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(jb_seleccionar)
+                        .addComponent(jb_cargar)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -203,10 +216,10 @@ public class Principal extends javax.swing.JFrame {
         jl_tablas2.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(jl_tablas2);
 
-        jButton2.setText("⬅");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_izquierda.setText("⬅");
+        jb_izquierda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jb_izquierdaMouseClicked(evt);
             }
         });
 
@@ -234,8 +247,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel15.setText("No Replicados");
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel16.setText("Replicados");
 
         jb_replicar.setText("Replicar");
@@ -245,70 +260,75 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel17.setText("Replicar");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel15)
+                        .addGap(223, 223, 223)
+                        .addComponent(jLabel16))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jb_guardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jb_cancelar))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(120, 120, 120)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jb_replicar))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(231, 231, 231)
-                .addComponent(jb_guardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jb_cancelar)
-                .addGap(100, 100, 100)
-                .addComponent(jb_replicar)
-                .addGap(33, 33, 33))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(397, 397, 397)
-                .addComponent(jButton2)
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addGap(213, 213, 213))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel10Layout.createSequentialGroup()
-                    .addGap(169, 169, 169)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(471, Short.MAX_VALUE)))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                    .addContainerGap(396, Short.MAX_VALUE)
-                    .addComponent(jb_derecha)
-                    .addGap(375, 375, 375)))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jb_derecha)
+                            .addComponent(jb_izquierda))
+                        .addGap(33, 268, Short.MAX_VALUE))))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15)
-                .addGap(125, 125, 125)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_guardar)
-                    .addComponent(jb_cancelar)
-                    .addComponent(jb_replicar))
-                .addGap(35, 35, 35))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                    .addContainerGap(109, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(82, 82, 82)))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel10Layout.createSequentialGroup()
-                    .addGap(162, 162, 162)
-                    .addComponent(jb_derecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(231, Short.MAX_VALUE)))
+                    .addComponent(jb_cancelar))
+                .addGap(46, 46, 46))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel17)
+                        .addGap(102, 102, 102)
+                        .addComponent(jb_derecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jb_izquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel16)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_replicar)))
+                .addGap(35, 43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -533,7 +553,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Escriba un Titulo");
+        jLabel13.setText("Proyecto TBD2");
 
         jb_probar_origen.setText("Probar");
         jb_probar_origen.addActionListener(new java.awt.event.ActionListener() {
@@ -618,32 +638,14 @@ public class Principal extends javax.swing.JFrame {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String connectionUrl = "jdbc:sqlserver://" + tf_instancia_o.getText() + ":" + tf_puerto_o.getText() + ";databaseName=" + tf_bd_o.getText() + ";integratedSecurity=true;";
             Connection conexion = DriverManager.getConnection(connectionUrl);
-
             System.out.println("Conectado");
             System.out.println("----------");
-
-            /*String query = "SELECT * FROM PERSONA";
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String nom = rs.getString("nombre");
-                int id = rs.getInt("ID");
-                System.out.println(nom + " " + id);
-            }
-            st.close();*/
- /*tf_instancia_o.setText("");
-            tf_puerto_o.setText("");
-            tf_bd_o.setText("");
-            tf_usuario_o.setText("");
-            pf_clave_o.setText("");*/
             comprobar = true;
-            JOptionPane.showMessageDialog(this, "Base de datos conectada exitosamente");
+            JOptionPane.showMessageDialog(this, "¡Base de datos conectada exitosamente!");
         } catch (SQLException ex) {
-            //ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Base de datos no encontrada");
+            JOptionPane.showMessageDialog(this, "¡Base de datos no encontrada!");
         } catch (ClassNotFoundException ex) {
-            //ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Base de datos no encontrada");
+            JOptionPane.showMessageDialog(this, "¡Base de datos no encontrada!");
         }
     }//GEN-LAST:event_jb_probar_origenActionPerformed
 
@@ -656,7 +658,7 @@ public class Principal extends javax.swing.JFrame {
             jd_inicio.setLocationRelativeTo(this);
             jd_inicio.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Debe probar las bases de datos antes de iniciar");
+            JOptionPane.showMessageDialog(this, "¡Debe probar las bases de datos antes de iniciar!");
         }
     }//GEN-LAST:event_jb_iniciarMouseClicked
 
@@ -666,17 +668,10 @@ public class Principal extends javax.swing.JFrame {
         String pass = pf_clave_d.getText();
         System.out.println("Conectando...");
         try (Connection connection = DriverManager.getConnection(url, user, pass)) {
-            /*System.out.println("Conectado!!");
-            tf_instancia_d.setText("");
-            tf_puerto_d.setText("");
-            tf_db_d.setText("");
-            tf_usuario_d.setText("");
-            pf_clave_d.setText("");*/
             JOptionPane.showMessageDialog(this, "Base de datos conectada exitosamente");
             comprobar2 = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Base de datos no encontrada");
-            //System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_jb_probar_destinoMouseClicked
 
@@ -687,11 +682,11 @@ public class Principal extends javax.swing.JFrame {
             m2.addElement(m.getElementAt(jl_tablas.getSelectedIndex()));
             m.removeElement(m.getElementAt(jl_tablas.getSelectedIndex()));
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_jb_derechaMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void jb_izquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_izquierdaMouseClicked
         try {
             DefaultListModel m = (DefaultListModel) jl_tablas.getModel();
             DefaultListModel m2 = (DefaultListModel) jl_tablas2.getModel();
@@ -699,7 +694,7 @@ public class Principal extends javax.swing.JFrame {
             m2.removeElement(m2.getElementAt(jl_tablas2.getSelectedIndex()));
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_jb_izquierdaMouseClicked
 
     private void jb_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_cancelarMouseClicked
         try {
@@ -709,7 +704,6 @@ public class Principal extends javax.swing.JFrame {
             while (rs2.next()) {
                 nombres.add(rs2.getString(1));
             }
-
             DefaultListModel m = (DefaultListModel) jl_tablas.getModel();
             DefaultListModel m2 = (DefaultListModel) jl_tablas2.getModel();
             Statement st = conectSQLServer().createStatement();
@@ -730,7 +724,7 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_jb_cancelarMouseClicked
 
@@ -779,11 +773,10 @@ public class Principal extends javax.swing.JFrame {
             st.execute("DELETE FROM BITACORA");
             for (int i = 0; i < m.size(); i++) {
                 st.execute("INSERT INTO BITACORA VALUES('" + m.getElementAt(i) + "')");
-
             }
             JOptionPane.showMessageDialog(jd_inicio, "¡Guardado Exitoso!");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_jb_guardarMouseClicked
 
@@ -799,7 +792,7 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_jb_actualizarMouseClicked
 
@@ -822,7 +815,6 @@ public class Principal extends javax.swing.JFrame {
                 }
                 DefaultComboBoxModel combo = (DefaultComboBoxModel) cb_crud.getModel();
                 String tipo = combo.getSelectedItem() + "";
-
                 //verificar los cruds
                 if (tipo.equals("Agregar")) {
                     String acum = "INSERT INTO " + tabla + " VALUES(";
@@ -846,9 +838,7 @@ public class Principal extends javax.swing.JFrame {
                     for (int i = 0; i < atributos.size(); i++) {
                         acum += (i + 1) + "). " + atributos.get(i) + "\n";
                     }
-                    String llave = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria que desea modificar: ");
-                    int algo = Integer.parseInt(JOptionPane.showInputDialog(jd_inicio, "Que desea modificar? \n " + acum));
-                    String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese el valor:");
+
                     ArrayList<String> llaves = new ArrayList();
                     ResultSet rs2 = st.executeQuery("SELECT [name]\n"
                             + "FROM syscolumns \n"
@@ -862,11 +852,25 @@ public class Principal extends javax.swing.JFrame {
                     while (rs2.next()) {
                         llaves.add(rs2.getString(1));
                     }
-                    st.execute("UPDATE " + tabla + " SET " + atributos.get(algo - 1) + " = '" + atributo + "' WHERE " + llaves.get(0) + " = " + llave);
-                    JOptionPane.showMessageDialog(jd_inicio, "¡Modificado Exitoso!");
-                } else if (tipo.equals("Eliminar")) {
+                    String llave = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria que desea modificar: ");
+                    ResultSet verify1 = st.executeQuery("SELECT * FROM " + tabla + " WHERE " + llaves.get(0) + " = " + llave);
+                    if (verify1.next()) {
+                        int algo = Integer.parseInt(JOptionPane.showInputDialog(jd_inicio, "Que desea modificar? \n " + acum));
+                        String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese el valor:");
+                        if (tabla.equalsIgnoreCase("product")) {
+                            st.execute("UPDATE " + tabla + " SET " + atributos.get(algo - 1) + " = '" + atributo + "' WHERE " + llaves.get(0) + " = '" + llave + "'");
+                        } else {
+                            st.execute("UPDATE " + tabla + " SET " + atributos.get(algo - 1) + " = '" + atributo + "' WHERE " + llaves.get(0) + " = " + llave);
 
+                        }
+                        JOptionPane.showMessageDialog(jd_inicio, "¡Modificado Exitoso!");
+                    } else {
+                        JOptionPane.showMessageDialog(jd_inicio, "¡El registro no existe!");
+                    }
+
+                } else if (tipo.equals("Eliminar")) {
                     String atributo = JOptionPane.showInputDialog(jd_inicio, "Ingrese la llave primaria");
+
                     ArrayList<String> foraneas = new ArrayList();
                     ResultSet rs3 = st.executeQuery("SELECT SYSCOLUMNS.name as field\n"
                             + "FROM SYSCOLUMNS \n"
@@ -876,37 +880,30 @@ public class Principal extends javax.swing.JFrame {
                     while (rs3.next()) {
                         foraneas.add(rs3.getString(1));
                     }
-
-                    for (int i = 0; i < foraneas.size(); i++) {
-                        ResultSet rs4 = st.executeQuery("SELECT " + foraneas.get(i) + " from " + tabla);
-                        String acum = "";
-                        while (rs4.next()) {
-                            acum += " " + rs4.getString(1) + " \n";
+                    ResultSet verify = st.executeQuery("SELECT * FROM " + tabla + " WHERE " + foraneas.get(0) + " = " + atributo);
+                    if (verify.next()) {
+                        if (foraneas.size() > 0) {
+                            Statement stB = conectSQLServer().createStatement();
+                            stB.execute("DELETE FROM " + tabla + " WHERE " + foraneas.get(0) + " = " + atributo + "");
+                            JOptionPane.showMessageDialog(jd_inicio, "¡Eliminado Exitoso!");
                         }
-                        //ta_llaves.append(foraneas.get(i) + "\n" + acum);
-                    }
-                    if (foraneas.size() > 0) {
-                        String acum = "DELETE FROM " + tabla + " WHERE " + foraneas.get(0) + " = " + atributo + "";
-                        //st.execute("INSERT INTO BITACORA2 VALUES('" + tabla + "','Eliminar', '" + acum + "'");
-                        Statement stB = conectSQLServer().createStatement();
-                        stB.execute("DELETE FROM " + tabla + " WHERE " + foraneas.get(0) + " = " + atributo + "");
-                        JOptionPane.showMessageDialog(jd_inicio, "eliminado exitosamente");
+                    } else {
+                        JOptionPane.showMessageDialog(jd_inicio, "¡El registro no existe!");
                     }
 
                 }
             } else {
                 JOptionPane.showMessageDialog(jd_inicio, "¡No ha seleccionado una tabla!");
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(jd_inicio, "¡Datos incorrectos!");
         }
     }//GEN-LAST:event_jb_seleccionarMouseClicked
 
     private void jb_cargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_cargarMouseClicked
         try {
-            //agregar llaves al text area
-            ta_llaves.setText("");
+            DefaultTableModel table = (DefaultTableModel) jt_mostrar.getModel();
+            table.setRowCount(0);
             DefaultListModel m = (DefaultListModel) jl_table.getModel();
             if (jl_table.getSelectedIndex() >= 0) {
                 String tabla = m.getElementAt(jl_table.getSelectedIndex()) + "";
@@ -923,42 +920,21 @@ public class Principal extends javax.swing.JFrame {
                         + "    WHERE SIK.indid = 1 AND SO.[name] = '" + tabla + "' )");
                 while (rs2.next()) {
                     llaves.add(rs2.getString(1));
-                    //System.out.println(rs2.getString(1)+" prim");
                 }
                 for (int i = 0; i < llaves.size(); i++) {
                     ResultSet rs3 = st.executeQuery("SELECT " + llaves.get(i) + " from " + tabla);
                     String acum = "";
                     while (rs3.next()) {
                         acum += " " + rs3.getString(1) + " \n";
+                        Object[] row = {rs3.getString(1)};
+                        table.addRow(row);
                     }
-                    ta_llaves.append(llaves.get(i) + "\n" + acum);
                 }
-
-                //para llaves foraneas
-                /*ArrayList<String> foraneas = new ArrayList();
-                ResultSet rs3 = st.executeQuery("SELECT SYSCOLUMNS.name as field\n"
-                        + "FROM SYSCOLUMNS \n"
-                        + "INNER JOIN SYSOBJECTS ON SYSOBJECTS.ID = SYSCOLUMNS.ID \n"
-                        + "WHERE SYSOBJECTS.name = '" + tabla + "' \n"
-                        + "and SYSCOLUMNS.xtype = '56';");
-                while (rs3.next()) {
-                    foraneas.add(rs3.getString(1));
-                }
-                for (int i = 0; i < foraneas.size(); i++) {
-                    ResultSet rs4 = st.executeQuery("SELECT " + foraneas.get(i) + " from " + tabla);
-                    String acum = "";
-                    while (rs4.next()) {
-                        acum += " " + rs4.getString(1) + " \n";
-                    }
-                    System.out.println(foraneas.get(i));
-                    ta_llaves.append(foraneas.get(i) + "\n" + acum);
-                }*/
             } else {
                 JOptionPane.showMessageDialog(jd_inicio, "No ha seleccionado una tabla");
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_jb_cargarMouseClicked
 
@@ -973,7 +949,7 @@ public class Principal extends javax.swing.JFrame {
             ResultSet rs2 = st.executeQuery("SELECT * FROM BITACORA2");
             ArrayList<Bitacora> bitacoras = new ArrayList();
             while (rs2.next()) {
-                bitacoras.add(new Bitacora(rs2.getString(1), rs2.getString(2), rs2.getString(3)));
+                bitacoras.add(new Bitacora(rs2.getString(1), rs2.getString(2), rs2.getString(3), rs2.getDate(4) + " " + rs2.getTime(4)));
             }
             for (int i = 0; i < bitacoras.size(); i++) {
                 boolean entrar = true;
@@ -1027,12 +1003,12 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
             for (int i = 0; i < bitacoras.size(); i++) {
-                st.execute("INSERT INTO HISTORIAL VALUES('" + bitacoras.get(i).getNombre() + "','" + bitacoras.get(i).getAccion() + "','" + bitacoras.get(i).getDescripcion() + "')");
+                st.execute("INSERT INTO HISTORIAL VALUES('" + bitacoras.get(i).getNombre() + "','" + bitacoras.get(i).getAccion() + "','" + bitacoras.get(i).getDescripcion() + "','" + bitacoras.get(i).getFecha() + "')");
             }
             st.execute("DELETE FROM BITACORA2");
             JOptionPane.showMessageDialog(jd_inicio, "Replica Exitosa");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_jb_replicarMouseClicked
 
@@ -1099,7 +1075,6 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_crud;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1108,6 +1083,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1127,13 +1103,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton jb_actualizar;
     private javax.swing.JButton jb_cancelar;
     private javax.swing.JButton jb_cargar;
     private javax.swing.JButton jb_derecha;
     private javax.swing.JButton jb_guardar;
     private javax.swing.JButton jb_iniciar;
+    private javax.swing.JButton jb_izquierda;
     private javax.swing.JButton jb_probar_destino;
     private javax.swing.JButton jb_probar_origen;
     private javax.swing.JButton jb_replicar;
@@ -1142,9 +1119,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_tablas;
     private javax.swing.JList<String> jl_tablas2;
     private javax.swing.JList<String> jl_table;
+    private javax.swing.JTable jt_mostrar;
     private javax.swing.JPasswordField pf_clave_d;
     private javax.swing.JPasswordField pf_clave_o;
-    private javax.swing.JTextArea ta_llaves;
     private javax.swing.JTextField tf_bd_o;
     private javax.swing.JTextField tf_db_d;
     private javax.swing.JTextField tf_instancia_d;
